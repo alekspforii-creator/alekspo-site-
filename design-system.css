@@ -1,0 +1,306 @@
+/* ALEKSPO / Visual system 02 — restrained executive editorial.
+   Loaded after layout refinements. No decorative gold or italic display type.
+   Content and responsive structure are preserved. */
+
+/* Cyrillic-native modern typography, with reliable local system fallbacks. */
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink:#172938;
+  --navy:#132232;
+  --navy2:#203449;
+  --text:#283b4b;
+  --muted:#627585;
+  --bone:#f2f5f8;
+  --paper:#fcfdfe;
+  --gold:#6388a2; /* Legacy variable retained for original components; now steel blue */
+  --line:#dce5ec;
+  --serif:'Golos Text','Segoe UI',Arial,sans-serif;
+  --sans:'Golos Text','Segoe UI',Arial,sans-serif;
+  --steel:#6e91ab;
+  --blue:#365a77;
+  --blue-dark:#1a344b;
+  --white:#fff;
+  --cool-bg:#f2f6f9;
+}
+html { scroll-padding-top:86px }
+body {
+  background:var(--paper);
+  color:var(--text);
+  font:400 15px/1.78 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:#cbdce9;color:#14283a}
+a,button { -webkit-tap-highlight-color:transparent }
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #72a3c6;outline-offset:4px}
+.scroll-progress{height:3px;background:var(--steel)}
+.site-header{border-bottom:1px solid rgba(215,231,241,.13)}
+.site-header.is-fixed{background:rgba(19,34,50,.97);box-shadow:0 8px 32px #06101a24}
+.brand-mark,.footer-brand{
+  font-family:var(--sans);
+  font-weight:700;
+  letter-spacing:-.09em;
+}
+.brand-dot,.footer-brand span{color:#91b4ce}
+.brand-caption{color:#b0c2d0;opacity:1;letter-spacing:.15em}
+.main-nav a{font-weight:600;letter-spacing:.06em;opacity:.78}
+.main-nav a:hover,.main-nav a.active{color:#fff;opacity:1}
+.main-nav .nav-contact{border:1px solid #9fb1bf88}
+.main-nav .nav-contact:hover{background:#ffffff14}
+.nav-contact span{color:#b9d1e1}
+.menu-toggle{border-color:#c2d3df66}
+.menu-toggle span{background:#e8f0f6}
+
+/* Home: calm navy background, portrait in its own visual space. */
+.hero{
+  background:
+    radial-gradient(ellipse at 78% 24%,rgba(66,97,124,.25),transparent 49%),
+    linear-gradient(116deg,#101e2d 3%,#182a3b 64%,#1e3143 100%);
+  color:#f5f8fb;
+}
+.hero:after{
+  background-image:linear-gradient(90deg,transparent 49.97%,#ffffff06 50%,transparent 50.03%);
+}
+.hero-content{max-width:650px}
+.hero-title{
+  color:#fff;
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:clamp(52px,5.5vw,86px);
+  line-height:1.09;
+  letter-spacing:-.069em;
+}
+.hero-title em,.serif-italic,.statement em,.contact-main em,.recognition h3 em{
+  font-family:var(--sans);
+  font-style:normal;
+  letter-spacing:-.055em;
+}
+.hero-title em{font-size:1em;font-weight:500;color:#d8e5ed}
+.title-full-stop{color:#a8c3d6}
+.eyebrow{color:#a8bed1;font-weight:650;letter-spacing:.16em}
+.eyebrow-line,.scroll-cue-line,.portrait-caption-dash{background:#94b1c6}
+.eyebrow-year{opacity:.58}
+.hero-kicker{color:#bcccd8;font-size:11px;letter-spacing:.12em}
+.hero-description{color:#c3d0d9;font-size:14px;line-height:1.86;max-width:515px}
+.hero-image-mask{
+  background:
+    linear-gradient(90deg,#132232 0%,rgba(19,34,50,.66) 17%,transparent 55%),
+    linear-gradient(0deg,#132232 0%,transparent 28%);
+}
+.portrait-rim,.portrait-rim::after{display:none!important}
+.portrait-caption{color:#bacbd8}
+.hero-side-note{color:#c3d3e080}
+.hero-bottom{color:#aabcc9}
+.hero-index span{color:#91a5b6}
+.resume-download,.button-light{
+  background:#f0f5f9;
+  border:1px solid #f0f5f9;
+  color:#193248;
+  font-weight:700;
+  letter-spacing:.045em;
+  border-radius:2px;
+  box-shadow:none;
+}
+.resume-download:hover,.button-light:hover{
+  background:#fff;border-color:#fff;box-shadow:0 8px 24px #06152324;
+}
+.resume-download .file-icon{color:#4b6b83}
+.text-link{border-color:#b2c7d688;color:#e4eef5}
+.text-link span{color:#adcbde}
+.text-link:hover{border-color:#fff}
+
+/* Neutral chapter dividers, modern typographic hierarchy. */
+.discipline-bar{background:#e9eff4;border-bottom:1px solid #dbe4eb}
+.discipline-inner span{color:#506678;font-weight:700;letter-spacing:.09em}
+.discipline-inner i{background:#91aabd}
+.section{padding-top:112px;padding-bottom:120px}
+.section-header-rule{background:#d7e1e9}
+.section-index,.section-mini,.subsection-label,.micro-label{
+  color:#567892;
+  font-weight:700;
+  letter-spacing:.10em;
+}
+.section-mini{color:#8da0af}
+.display-heading{
+  font-family:var(--sans);
+  font-size:clamp(38px,4.3vw,64px);
+  font-weight:650;
+  letter-spacing:-.063em;
+  line-height:1.18;
+  color:#1b3040;
+}
+.serif-italic{color:#4b697f;font-weight:500}
+.about-left .accent-long-line{background:#8fa7b7}
+.about-right p{color:#607381}
+.about-right .lead-paragraph{color:#314758;font-weight:400}
+.lead-paragraph strong{color:#20394a;font-weight:700}
+.about-facts{border-color:#dce5ec}
+.about-facts>div+div{border-color:#dce5ec}
+.about-facts strong{
+  font-family:var(--sans);
+  font-weight:650;
+  font-size:clamp(32px,3.4vw,47px);
+  color:#253e50;
+  letter-spacing:-.065em;
+}
+.about-facts strong span{color:#7494ac}
+.about-facts>div>span{color:#788c9a}
+
+/* Competencies: precise border-driven cards, no ornamental gold. */
+.section-expertise{background:#eef3f7}
+.expertise-heading p,.experience-intro p{color:#677b8a}
+.expertise-card{
+  background:#fff;
+  border:1px solid #dbe5ed;
+  box-shadow:0 2px 8px #172e4207;
+  border-radius:3px;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.expertise-card:hover{
+  transform:translateY(-4px);
+  background:#fff;
+  border-color:#aac0d0;
+  box-shadow:0 14px 34px #213d5312;
+}
+.card-number{color:#859aaa;font-weight:650}
+.card-icon{color:#6b8ba2}
+.expertise-card h3{font-weight:700;color:#243b4c}
+.expertise-card p{color:#687c89}
+.card-rule{background:#7094ad}
+.section-experience{background:#fff}
+.timeline:before{background:#cddbe4}
+.job:not(:last-child) .job-content{border-bottom:1px solid #e1e9ef}
+.job-date{color:#597a93;font-weight:700}
+.job-dot{
+  outline:1px solid #7fa1b8;
+  background:#7196b0;
+  border-color:#fff;
+}
+.job-company{color:#52758f;font-weight:750}
+.job h3{color:#1c3344;font-weight:700}
+.job-summary{color:#637684}
+.job-tag{color:#31566f;background:#e8f1f6}
+.job-details summary{
+  color:#274760;
+  border-color:#b9cbd8;
+  font-weight:700;
+}
+.details-plus,.job-details li::marker{color:#527c99}
+.job-details ul{color:#627687}
+
+/* Editorial pause: one dominant line, no golden quotation symbol. */
+.statement{
+  background:linear-gradient(120deg,#172938,#223b50);
+  color:#f1f6fa;
+}
+.statement:before{
+  background:
+    radial-gradient(ellipse at 72% 5%,rgba(147,187,215,.1),transparent 58%),
+    repeating-linear-gradient(90deg,transparent 0,transparent 119px,#ffffff06 120px);
+}
+.statement-symbol{display:none}
+.statement-inner{padding-top:91px;padding-bottom:97px}
+.statement p{
+  max-width:940px;
+  font-family:var(--sans);
+  font-size:clamp(26px,3.3vw,43px);
+  font-weight:500;
+  letter-spacing:-.055em;
+  line-height:1.38;
+}
+.statement em{font-weight:700;color:#d4e6f2}
+.statement-caption{color:#a0bacb;letter-spacing:.12em}
+
+/* Education and awards: cool paper, understated dividers. */
+.section-education{background:#f2f6f9}
+.education-left p{color:#647987}
+.education-item{border-color:#d7e1e9}
+.education-year{
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:21px;
+  font-weight:600;
+  color:#597e9a;
+}
+.education-item h3{color:#213b4b;font-weight:700}
+.education-item p{color:#667b8a}
+.degree{color:#7f919f}
+.training-list span{background:#e3ebf1;color:#47657a}
+.recognition{border-color:#d7e1e9}
+.recognition h3{
+  font-family:var(--sans);
+  font-weight:650;
+  font-size:clamp(30px,3.35vw,47px);
+  letter-spacing:-.055em;
+}
+.recognition h3 em{color:#4e718c;font-weight:550}
+.recognition-list p{color:#506879;border-color:#d8e3eb}
+.recognition-list p:before{color:#7091a7}
+
+/* Strong dark closing chapter, neutral CTA. */
+.section-contact{background:#152638;color:#f2f7fb}
+.section-contact:after{display:none}
+.contact-top .section-index{color:#9fbad0}
+.availability{color:#a8bdcc}
+.availability-dot{background:#82a9bd}
+.contact-main h2{
+  font-family:var(--sans);
+  font-weight:650;
+  letter-spacing:-.074em;
+}
+.contact-main em{color:#bdd4e2;font-weight:500}
+.contact-main p{color:#b1c2d0}
+.contact-bottom{border-color:#3c5062}
+.micro-label{color:#90adbf}
+.location strong{color:#e6eef4}
+.contact-disclaimer p{color:#aebfcc}
+.contact-actions .resume-download{background:#eff5f9;color:#193248}
+.print-button{
+  background:transparent;
+  color:#e1ecf3;
+  border:1px solid #6e879a;
+  font-weight:650;
+}
+.print-button:hover{background:#2d465a}
+.print-button span{color:#b2cada}
+.footer{background:#0d1a27;color:#8da6b9}
+.footer-brand{color:#e5f0f7}
+.footer-row>span{color:#9dafbd}
+.back-top{color:#c5d7e4}
+.toast{background:#183249}
+.js .reveal{transition-timing-function:cubic-bezier(.18,.79,.24,1)}
+/* Mobile: keep hierarchy and controls readable; no novelty fonts. */
+@media(max-width:1100px){
+  .hero-title{font-size:clamp(47px,5.4vw,70px)}
+}
+@media(max-width:760px){
+  .main-nav{background:#172a3d;border-color:#ffffff20}
+  .hero-title{font-size:clamp(38px,9vw,57px);line-height:1.12}
+  .hero-content{padding-top:405px}
+  .hero-image-mask{
+    background:
+      linear-gradient(0deg,#132232 0%,rgba(19,34,50,.47) 28%,transparent 77%),
+      linear-gradient(90deg,#132232 0%,transparent 57%);
+  }
+  .display-heading{font-size:clamp(36px,8.5vw,55px)}
+  .section{padding-top:75px;padding-bottom:82px}
+  .statement p{font-size:clamp(26px,5.8vw,40px)}
+  .contact-main h2{font-size:clamp(55px,11vw,85px)}
+}
+@media(max-width:415px){
+  .hero-title{font-size:clamp(36px,9.5vw,42px)}
+  .hero-content{padding-top:385px}
+}
+@media(prefers-reduced-motion:reduce){
+  .expertise-card,.resume-download,.button-light{transition:none}
+  .expertise-card:hover,.resume-download:hover,.button-light:hover{transform:none}
+}
+@media print {
+  body{font-family:'Segoe UI',Arial,sans-serif;color:#111;background:#fff}
+  .hero{background:#182939!important}
+  .hero-title{color:#fff!important}
+  .hero-title em{color:#fff!important}
+  .section-expertise,.section-education{background:#fff!important}
+  .expertise-card{box-shadow:none!important;border:1px solid #b6c5d0}
+}
