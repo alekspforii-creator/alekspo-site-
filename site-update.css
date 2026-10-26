@@ -40,7 +40,7 @@ html { scroll-padding-top:calc(95px + var(--notice-height)); }
 .experience-ambient{
   position:relative;width:100%;height:clamp(280px,36vw,490px);
   overflow:hidden;margin-top:clamp(70px,8vw,125px);
-  background:#1a2b3a url("https://alekspforii-creator.github.io/alekspo-preview/alekspo_industry_poster.jpg") center 50%/cover no-repeat;
+  background:#1a2b3a url("alekspo_industry_poster.jpg") center 50%/cover no-repeat;
   isolation:isolate;
 }
 .experience-ambient video{
@@ -86,4 +86,71 @@ html { scroll-padding-top:calc(95px + var(--notice-height)); }
   .site-development-notice,.experience-ambient{display:none!important}
   .hero-visual img{transition:none}
   .resume-cta,.resume-download-pending,.resume-note{display:none!important}
+}
+
+
+/* 2026-10-26 / Refinement 2: portrait without a visible photograph rectangle.
+   The complete image area fades into the executive navy hero background.
+   Feathering is applied to the WHOLE visual, not only to the photograph. */
+.hero .hero-visual {
+  top:62px;
+  height:calc(100% - 62px);
+  right:-8%;
+  width:54%;
+  background:transparent !important;
+  opacity:1;
+  border:0;
+  -webkit-mask-image:radial-gradient(ellipse 54% 50% at 52% 48%, #000 38%, rgba(0,0,0,.99) 60%, rgba(0,0,0,.75) 78%, transparent 99%);
+  mask-image:radial-gradient(ellipse 54% 50% at 52% 48%, #000 38%, rgba(0,0,0,.99) 60%, rgba(0,0,0,.75) 78%, transparent 99%);
+}
+.hero .hero-visual img{
+  opacity:1;
+  filter:contrast(1.015) saturate(.94);
+  object-position:center 16%;
+}
+.hero .hero-image-mask {
+  background:
+    linear-gradient(90deg,rgba(19,34,50,.66) 0%,rgba(19,34,50,.22) 18%,transparent 46%),
+    linear-gradient(0deg,rgba(19,34,50,.62) 0%,transparent 24%);
+}
+.hero .hero-side-note{display:none}
+
+/* Remove double-exposure: the old poster underneath semi-transparent
+   video previously showed turbines through the mine footage.
+   The video element's poster attribute handles the initial still frame. */
+.experience-ambient{
+  background:#172838 !important;
+  background-image:none !important;
+}
+.experience-ambient video,
+.experience-ambient.is-ended video{
+  opacity:1 !important;
+  filter:none !important;
+}
+.experience-ambient:after{
+  background:linear-gradient(to bottom,
+    #ffffff 0%,rgba(255,255,255,.82) 5%,
+    rgba(255,255,255,.12) 21%,transparent 38%,
+    transparent 73%,rgba(20,38,55,.84) 100%) !important;
+}
+@media(max-width:1100px){
+  .hero .hero-visual{right:-10%;width:57%}
+}
+@media(max-width:760px){
+  .hero .hero-visual{
+    top:52px;right:-8%;width:108%;height:435px;
+    -webkit-mask-image:radial-gradient(ellipse 75% 61% at 56% 37%,#000 32%,rgba(0,0,0,.94) 55%,transparent 98%);
+    mask-image:radial-gradient(ellipse 75% 61% at 56% 37%,#000 32%,rgba(0,0,0,.94) 55%,transparent 98%);
+  }
+  .hero .hero-visual img{object-position:center 20%}
+  .experience-ambient video{opacity:1 !important}
+}
+@media(max-width:415px){
+  .hero .hero-visual{top:50px;right:-13%;height:420px}
+}
+@media print{
+  .hero .hero-visual {
+    top:0;right:-30px;width:40%;height:100%;
+    -webkit-mask-image:none;mask-image:none;
+  }
 }

@@ -1,27 +1,40 @@
-/* One-shot ambient playback: no controls, no loop, pauses offscreen.
-   On reduced-motion, narrow viewport or save-data: stable poster only. */
+/* Continuous muted ambient loop, scroll-pause for performance.
+   Motion-reduction and data-saver preferences are respected. */
 (() => {
- const host=document.querySelector('.experience-ambient');
- const video=document.getElementById('experienceAmbientVideo');
- if(!host||!video)return;
- const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- const saveData=navigator.connection?.saveData===true;
- const small=window.matchMedia('(max-width: 760px)').matches;
- if(reduceMotion||saveData||small){video.removeAttribute('autoplay');video.pause();return;}
- let started=false,finished=false;
- video.addEventListener('ended',()=>{finished=true;host.classList.add('is-ended');video.pause();});
- video.addEventListener('error',()=>{host.classList.add('is-ended');});
- if('IntersectionObserver' in window){
-   const io=new IntersectionObserver(entries=>{
-     for(const e of entries){
-       if(finished)continue;
-       if(e.isIntersecting && e.intersectionRatio>.40){
-         if(!started){started=true;video.preload='auto';}
-         video.muted=true;
-         video.play().catch(()=>{host.classList.add('is-ended');});
-       }else if(!video.paused){video.pause();}
-     }
-   },{threshold:[0,.4,.65]});
-   io.observe(host);
- }
+  const host = document.querySelector('.experience-ambient');
+  const video = document.getElementById('experienceAmbientVideo');
+  if (!host || !video) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection?.saveData === true;
+  video.loop = true;
+  video.muted = true;
+  video.playsInline = true;
+  host.classList.remove('is-ended');
+  if (reduceMotion || saveData) {
+    video.pause();
+    return;
+  }
+  let inView = false;
+  async function start() {
+    if (!inView || document.hidden) return;
+    if (video.preload === 'none') video.preload = 'auto';
+    try { await video.play(); } catch (_) { /* poster remains visible */ }
+  }
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        inView = entry.isIntersecting;
+        if (inView) start();
+        else video.pause();
+      }
+    }, { threshold: 0.14 });
+    observer.observe(host);
+  } else {
+    inView = true;
+    start();
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) video.pause();
+    else start();
+  });
 })();
