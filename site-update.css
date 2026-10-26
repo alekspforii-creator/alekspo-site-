@@ -154,3 +154,54 @@ html { scroll-padding-top:calc(95px + var(--notice-height)); }
     -webkit-mask-image:none;mask-image:none;
   }
 }
+
+/* FINAL HERO SEAM REMOVAL — eliminate inherited masks and decorative center rule. */
+.hero:after { display:none !important; }
+.hero .hero-visual {
+  right:-12%;
+  width:59%;
+  overflow:visible;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 15%,#000 63%,rgba(0,0,0,.6) 80%,transparent 100%),
+    linear-gradient(0deg,transparent 0%,#000 18%,#000 84%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:radial-gradient(ellipse 68% 56% at 46% 46%,#000 36%,rgba(0,0,0,.98) 54%,rgba(0,0,0,.68) 75%,transparent 100%);
+}
+.hero .hero-visual img {
+  -webkit-mask-image:none !important;
+  mask-image:none !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+.hero .hero-image-mask {
+  background:linear-gradient(90deg,rgba(19,34,50,.62) 0%,transparent 28%),
+             linear-gradient(0deg,rgba(19,34,50,.55) 0%,transparent 24%);
+}
+.hero .hero-visual::after {display:none !important;}
+/* Second portrait — closing editorial image, no card, behind the content. */
+.section-contact{isolation:isolate;}
+.section-contact .closing-portrait{
+  position:absolute;right:-2vw;bottom:0;top:12%;
+  width:min(39vw,530px);z-index:0;pointer-events:none;opacity:.37;
+  -webkit-mask-image:radial-gradient(ellipse 74% 74% at 56% 51%,#000 27%,rgba(0,0,0,.92) 49%,transparent 97%);
+  mask-image:radial-gradient(ellipse 74% 74% at 56% 51%,#000 27%,rgba(0,0,0,.92) 49%,transparent 97%);
+}
+.section-contact .closing-portrait img{
+  width:100%;height:100%;object-fit:cover;object-position:center 19%;
+  border:0;box-shadow:none;display:block;
+  filter:saturate(.72) brightness(.78);
+}
+.section-contact .contact-grid {position:relative;z-index:2;}
+@media(max-width:1100px) {
+ .hero .hero-visual{right:-16%;width:64%}
+ .section-contact .closing-portrait{width:42vw;opacity:.24}
+}
+@media(max-width:760px) {
+ .hero .hero-visual{
+   right:-12%;width:110%;height:435px;top:52px;
+   -webkit-mask-composite:source-over;
+   -webkit-mask-image:radial-gradient(ellipse 74% 64% at 55% 41%,#000 28%,rgba(0,0,0,.91) 55%,transparent 98%);
+   mask-image:radial-gradient(ellipse 74% 64% at 55% 41%,#000 28%,rgba(0,0,0,.91) 55%,transparent 98%);
+ }
+ .section-contact .closing-portrait{top:2%;bottom:auto;right:-15%;width:80%;height:65%;opacity:.13}
+}
+@media print{.section-contact .closing-portrait{display:none!important}}
